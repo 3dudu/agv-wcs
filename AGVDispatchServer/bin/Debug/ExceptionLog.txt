@@ -1,0 +1,53 @@
+2020-09-29 15:26:12 发生了 Application_ThreadException 
+索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 AGVDispatchServer.FrmMain.enabledCar(CheckBox check, Int32 index) 位置 D:\AGV_svn\AGVDispatchServer\FrmMain.cs:行号 1578
+   在 AGVDispatchServer.FrmMain.checkBox_CheckedChanged(Object sender, EventArgs e) 位置 D:\AGV_svn\AGVDispatchServer\FrmMain.cs:行号 1593
+   在 System.Windows.Forms.CheckBox.OnCheckedChanged(EventArgs e)
+   在 System.Windows.Forms.CheckBox.set_CheckState(CheckState value)
+   在 System.Windows.Forms.CheckBox.OnClick(EventArgs e)
+   在 System.Windows.Forms.CheckBox.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+mscorlib
+2020-09-29 17:08:38 发生了 Application_ThreadException 
+索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 AGVDispatchServer.FrmMain.enabledCar(CheckBox check, Int32 index) 位置 D:\AGV_svn\AGVDispatchServer\FrmMain.cs:行号 1578
+   在 AGVDispatchServer.FrmMain.checkBox_CheckedChanged(Object sender, EventArgs e) 位置 D:\AGV_svn\AGVDispatchServer\FrmMain.cs:行号 1593
+   在 System.Windows.Forms.CheckBox.OnCheckedChanged(EventArgs e)
+   在 System.Windows.Forms.CheckBox.set_CheckState(CheckState value)
+   在 System.Windows.Forms.CheckBox.OnClick(EventArgs e)
+   在 System.Windows.Forms.CheckBox.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+mscorlib
+2020-09-29 17:33:42 发生了 Application_ThreadException 
+输入字符串的格式不正确。
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 AGVDispatchServer.FrmMain.btnTestStart_Click(Object sender, EventArgs e) 位置 D:\AGV_svn\AGVDispatchServer\FrmMain.cs:行号 553
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 DevExpress.XtraEditors.BaseButton.OnClick(EventArgs e)
+   在 DevExpress.XtraEditors.BaseButton.OnMouseUp(MouseEventArgs e)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 DevExpress.Utils.Controls.ControlBase.WndProc(Message& m)
+   在 DevExpress.XtraEditors.BaseControl.WndProc(Message& msg)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+mscorlib

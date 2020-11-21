@@ -1,0 +1,1388 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+
+  <rule RuleCode="getLandMarks">
+    <RuleName>根据地标编码取地标信息</RuleName>
+    <Sql>
+      select
+      LandCode as LandmarkCode,
+      LandName as LandMarkName,
+      LandY as LandY,
+      LandX as LandX
+      from tbLandMark
+    </Sql>
+  </rule>
+
+  <rule RuleCode="Load_RouteFragment">
+    <RuleName>查询线路线段设置</RuleName>
+    <Sql>
+      select distinct  * from tbRouteFragmentConfig
+    </Sql>
+  </rule>
+  <rule RuleCode="Load_RouteFragmentByFragment">
+    <RuleName>查询线路线段设置</RuleName>
+    <Sql>
+      select distinct Fragment from tbRouteFragmentConfig
+    </Sql>
+  </rule>
+
+  <rule RuleCode="load_ByAction">
+    <RuleName>根据动作地标查询命令</RuleName>
+    <Sql>
+      select r.*,c.CmdName from tbRouteFragmentConfig r left join tbCmd c on r.CmdCode=c.CmdCode
+      where ActionLandMark='$ActionLandMark$'
+    </Sql>
+  </rule>
+  <rule RuleCode="del_RouteFrament">
+    <RuleName>删除线路线段</RuleName>
+    <Sql>
+      delete from tbRouteFragmentConfig
+      where Fragment='$Fragment$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="Load_Cmd">
+    <RuleName>查询指令档案</RuleName>
+    <Sql>
+      select * from tbCmd
+    </Sql>
+  </rule>
+  <rule RuleCode="load_OtherByFragment">
+    <RuleName>查询指令档案</RuleName>
+    <Sql>
+      select * from tbRouteFragmentConfig
+      where Fragment='$Fragment$'
+    </Sql>
+  </rule>
+  <rule RuleCode="save_RouteFragment">
+    <RuleName>保存线路线段设置</RuleName>
+    <Sql>
+      insert into tbRouteFragmentConfig
+      values
+      ('$Fragment$','$ActionLandMark$',$CmdCode$,$CmdPara$,$CmdIndex$)
+    </Sql>
+  </rule>
+
+  <rule RuleCode="del_ByFragment">
+    <RuleName>删除线路线段设置</RuleName>
+    <Sql>
+      delete from tbRouteFragmentConfig
+      where Fragment='$Fragment$'
+    </Sql>
+  </rule>
+  Load_SpeRunDir
+  <rule RuleCode="Load_SpeRunDir">
+    <RuleName>查询特殊行走方向设置</RuleName>
+    <Sql>
+      select * from tbSpecRunDirConfig
+    </Sql>
+  </rule>
+  <rule RuleCode="del_tbSpecRunDirConfig">
+    <RuleName>删除特殊行走方向设置</RuleName>
+    <Sql>
+      delete from tbSpecRunDirConfig
+    </Sql>
+  </rule>
+  <rule RuleCode="save_tbSpecRunDirConfig">
+    <RuleName>保存特殊行走方向设置</RuleName>
+    <Sql>
+      insert into tbSpecRunDirConfig
+      values('$Fragment$',$Dir$)
+    </Sql>
+  </rule>
+  <rule RuleCode="Dele_SysParamater">
+    <RuleName>删除系统参数</RuleName>
+    <Sql>
+      delete from tbSysParamater
+    </Sql>
+  </rule>
+  <rule RuleCode="Save_SysParamater">
+    <RuleName>保存系统参数</RuleName>
+    <Sql>
+      insert into tbSysParamater
+      (
+      ParameterCode,
+      ParameterValue
+      ) values (
+      '$ParameterCode$',
+      '$ParameterValue$'
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="getSystemModes">
+    <RuleName>加载系统参数模板信息</RuleName>
+    <Sql>
+      select *
+      from tbSystermModel
+    </Sql>
+  </rule>
+  <rule RuleCode="GetParameterByCode">
+    <RuleName>根据系统参数编码取系统参数信息</RuleName>
+    <Sql>
+      select ParameterCode,
+      ParameterValue
+      from tbSysParamater
+      where ParameterCode='$ParameterCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="getLandMarkByCondition">
+    <RuleName>根据地标编码取地标信息</RuleName>
+    <Sql>
+      select
+      LandCode as LandmarkCode,
+      LandName as LandMarkName,
+      LandY as LandY,
+      LandX as LandX
+      from tbLandMark
+      where $Condition$
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadAGVAchive">
+    <RuleName>加载AGV档案</RuleName>
+    <Sql>
+      select CarCode as AgvID,
+      CarName as CarName,
+      CarIP,
+      CarPort,
+      StandbyLandMark
+      from tbCar
+    </Sql>
+  </rule>
+
+  <rule RuleCode="DeleAGVs">
+    <RuleName>删除AGV档案</RuleName>
+    <Sql>
+      delete from tbCar
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveAGVs">
+    <RuleName>保存AGV档案</RuleName>
+    <Sql>
+      insert into tbCar
+      (
+      CarCode,
+      CarName,
+      CarIP,
+      CarPort,
+      StandbyLandMark
+      ) values (
+      $CarCode$,
+      '$CarName$',
+      '$CarIP$',
+      '$CarPort$',
+      '$StandbyLandMark$'
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="dele_Action">
+    <RuleName>删除动作</RuleName>
+    <Sql>
+      delete from tbCmd
+    </Sql>
+  </rule>
+
+  <rule RuleCode="Save_Action">
+    <RuleName>保存动作编码</RuleName>
+    <Sql>
+      insert into tbCmd
+      (
+      CmdCode,
+      CmdName,
+      CmdOrder
+      ) values (
+      '$ActionCode$',
+      '$ActionName$',
+      '$ActionOrder$'
+      );
+    </Sql>
+  </rule>
+
+  <rule RuleCode="load_action">
+    <RuleName>加载所有动作</RuleName>
+    <Sql>
+      select
+      CmdCode,
+      CmdName,
+      CmdOrder
+      from tbCmd
+    </Sql>
+  </rule>
+  <rule RuleCode="deleTraffic">
+    <RuleName>删除所有的交管信息</RuleName>
+    <Sql>
+      delete from tbLandmarkResList
+    </Sql>
+  </rule>
+
+  <rule RuleCode="deleTraJunction">
+    <RuleName>删除所有的区域车辆信息</RuleName>
+    <Sql>
+      delete from tbTraJunction
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTraffic">
+    <RuleName>加载所有的交管信息</RuleName>
+    <Sql>
+      select * from tbLandmarkResList
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTraJunction">
+    <RuleName>加载所有的区域车辆信息</RuleName>
+    <Sql>
+      select * from tbTraJunction
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveTraafics">
+    <RuleName>保存所有的交管信息</RuleName>
+    <Sql>
+      insert into tbLandmarkResList
+      (
+      ID,
+      Description,
+      LandMarkList
+      ) values (
+      $ID$,
+      '$Description$',
+      '$LandMarkList$'
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveTraJunction">
+    <RuleName>保存所有的区域车辆信息</RuleName>
+    <Sql>
+      insert into tbTraJunction
+      (
+      TraJunctionID,
+      Carnumber,
+      JunctionLandMarkCodes
+      ) values (
+      $TraJunctionID$,
+      $Carnumber$,
+      '$JunctionLandMarkCodes$'
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="Dele_Planset">
+    <RuleName>删除布局设置表</RuleName>
+    <Sql>
+      delete from tbPlanset where fileName='$fileName$'
+    </Sql>
+  </rule>
+  <rule RuleCode="getNewMapID">
+    <RuleName>获取新的地图ID</RuleName>
+    <Sql>
+      select max(ID)+1 from tbPlanset
+    </Sql>
+  </rule>
+  <rule RuleCode="Dele_LandMarks">
+    <RuleName>删除地标档案</RuleName>
+    <Sql>
+      delete from tbLandMark
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveLandMarks">
+    <RuleName>保存地标档案</RuleName>
+    <Sql>
+      insert into tbLandMark
+      (
+      LandCode,
+      LandName,
+      LandY,
+      LandX
+      ) values
+      $Value_Sql$
+    </Sql>
+  </rule>
+  <rule RuleCode="Dele_StockRages">
+    <RuleName>删除储位档案</RuleName>
+    <Sql>
+      delete from tbLocaton where ID not in ($DelStockConditon$)
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveStorages">
+    <RuleName>保存储位档案</RuleName>
+    <Sql>
+      $Value_Sql$
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleAllSegment">
+    <RuleName>删除全局线段表</RuleName>
+    <Sql>
+      delete from tbAllSegment
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveAllSegment">
+    <RuleName>保存全局线段表</RuleName>
+    <Sql>
+      insert into tbAllSegment
+      (BeginLandMakCode,
+      EndLandMarkCode,
+      Length,ExcuteAngle,
+      ExcuteMoveDirect,
+      ExcuteTurnDirect,
+      SegmentType,
+      Point1X,
+      Point1Y,
+      Point2X,
+      Point2Y,
+      Point3X,
+      Point3Y,
+      Point4X,
+      Point4Y,
+      PlanRouteLevel,
+      ExcuteAvoidance,
+      ExcuteSpeed
+      ) values
+      $Value_Sql$
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadAGVCoordinate">
+    <RuleName>加载AGV坐标体系设置</RuleName>
+    <Sql>
+      select * from tbAGVCoordinate
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleteAGVCoordinate">
+    <RuleName>保存AGV坐标体系设置</RuleName>
+    <Sql>
+      delete from tbAGVCoordinate
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveAGVCoordinate">
+    <RuleName>保存AGV坐标体系设置</RuleName>
+    <Sql>
+      insert into tbAGVCoordinate
+      (
+      Direction,
+      Angle
+      ) values
+      (
+      $Direction$,
+      $Angle$
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="Load_Button">
+    <RuleName>加载所有操作按钮</RuleName>
+    <Sql>
+      select * from tbSysOperButton
+    </Sql>
+  </rule>
+  <rule RuleCode="Load_Category">
+    <RuleName>查询用户分类</RuleName>
+    <Sql>
+      select * from tbUserCategory
+    </Sql>
+  </rule>
+  <rule RuleCode="Load_UserCategoryToButton">
+    <RuleName>查询所有用户分类权限按钮档案</RuleName>
+    <Sql>
+      select * from tbUserCategoryToButton
+    </Sql>
+  </rule>
+  <rule RuleCode="del_ButtonToCategory">
+    <RuleName>删除用户分类按钮对照</RuleName>
+    <Sql>
+      delete from tbUserCategoryToButton
+      where CategoryCode='$CategoryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="save_Button">
+    <RuleName>保存所分配的权限</RuleName>
+    <Sql>
+      insert into tbUserCategoryToButton
+      (
+      ButtonName,
+      ButtonType,
+      CategoryCode
+      )values
+      (
+      '$ButtonName$',
+      $ButtonType$,
+      '$CategoryCode$')
+    </Sql>
+  </rule>
+  <rule RuleCode="Load_ButtonFromCategory">
+    <RuleName>根据用户分类编码查询系统按钮</RuleName>
+    <Sql>
+      select b.ButtonType,
+      b.ButtonName,
+      b.ButtonCaption,
+      t.CategoryCode
+      from tbSysOperButton b
+      inner join tbUserCategoryToButton t on b.ButtonName=t.ButtonName
+      where t.CategoryCode='$CategoryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadUserByCategoryCode">
+    <RuleName>根据分类编码查询用户</RuleName>
+    <Sql>
+      select a.*
+      from tbUser a
+      inner join tbUserToCategory b on a.UserID=b.UserID
+      where b.CategoryCode='$CategoryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="Del_Category">
+    <RuleName>删除用户分类</RuleName>
+    <Sql>
+      delete from tbUserCategory
+      where CategoryCode='$CategoryCode$';
+
+      delete from tbUser
+      where UserID in (select UserID from tbUserToCategory t where t.CategoryCode='$CategoryCode$');
+
+      delete from tbUserToCategory
+      where CategoryCode='$CategoryCode$';
+
+      delete from tbUserCategoryToButton
+      where CategoryCode='$CategoryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="Del_User">
+    <RuleName>删除用户</RuleName>
+    <Sql>
+      delete from tbUser
+      where UserID='$UserID$';
+    </Sql>
+  </rule>
+  <rule RuleCode="Del_userTocate">
+    <RuleName>删除用户</RuleName>
+    <Sql>
+      delete from tbUserToCategory
+      where UserID='$UserID$'
+    </Sql>
+  </rule>
+  <rule RuleCode="Save_Category">
+    <RuleName>保存用户分类</RuleName>
+    <Sql>
+      insert into tbUserCategory
+      (CategoryCode,
+      CategoryName)
+      values
+      (
+      '$CategoryCode$',
+      '$CategoryName$'
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="select_TheLastFromCategory">
+    <RuleName>查询最后一条用户分类编码</RuleName>
+    <Sql>
+      select top 1 CategoryCode from tbUserCategory order by CategoryCode desc
+    </Sql>
+  </rule>
+  <rule RuleCode="del_ByUserToCategory">
+    <RuleName>根据用户ID删除用户分类对照</RuleName>
+    <Sql>
+      delete  from tbUserToCategory
+      where UserID='$UserID$'
+
+    </Sql>
+  </rule>
+  <rule RuleCode="save_UserToCategory">
+    <RuleName>保存用户分类对照</RuleName>
+    <Sql>
+      insert into tbUserToCategory
+      (CategoryCode,
+      UserID)
+      values
+      ('$CategoryCode$',
+      '$UserID$'
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="Save_User">
+    <RuleName>保存用户</RuleName>
+    <Sql>
+      insert into tbUser
+      (
+      UserID,
+      PassWord,
+      UserName
+      ) values (
+      '$UserID$',
+      '$PassWord$',
+      '$UserName$'
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="select_TheLastFromUser">
+    <RuleName>查询最后一条用户ID</RuleName>
+    <Sql>
+      select top 1 UserID from tbUser order by UserID desc
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadRoutes">
+    <RuleName>查询所有线路</RuleName>
+    <Sql>
+      select
+      RouteCode as RouteID,
+      RouteName as RouteName,
+      LandMarks as LandCodeStr,
+      RouteWorkType as RouteTypeInt,
+      StationNo,
+      DirectionForStation
+      from tbRoute
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleRoute">
+    <RuleName>删除单条线路</RuleName>
+    <Sql>
+      delete from tbRoute where RouteCode=$RouteCode$;
+      delete from tbRouteToSegmentRes
+      where RouteID=$RouteCode$;
+      delete from tbRouteToAgvRoute where RouteID=$RouteCode$;
+      delete from tbRouteLandMarkCmdList where RouteID=$RouteCode$;
+      delete from tbRoutePoint where RouteCode=$RouteCode$;
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadRouteByID">
+    <RuleName>查询所有线路</RuleName>
+    <Sql>
+      select
+      RouteCode as RouteID,
+      RouteName as RouteName,
+      LandMarks as LandCodeStr,
+      RouteWorkType as RouteTypeInt,
+      StationNo,
+      DirectionForStation
+      from tbRoute
+      where RouteCode=$TaskID$
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadRouteToAGV">
+    <RuleName>查询线路对照AGV</RuleName>
+    <Sql>
+      select
+      c.CarCode as AgvID,
+      c.CarName as CarName,
+      c.CarType as CarType,
+      c.CarIP,
+      c.CarPort,
+      ra.CarRouteID as OnCarRouteID
+      from tbRoute r
+      inner join tbRouteToAgvRoute ra on r.RouteCode=ra.RouteID
+      inner join tbCar c on ra.CarCode= c.CarCode
+      where r.RouteCode=$RouteCode$
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleRouteByID">
+    <RuleName>删除单条线路</RuleName>
+    <Sql>
+      delete from tbRoute where RouteCode=$RouteCode$;
+      delete from tbRouteToSegmentRes
+      where RouteID=$RouteCode$;
+      delete from tbRouteToAgvRoute where RouteID=$RouteCode$;
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveTbRoute">
+    <RuleName>保存线路</RuleName>
+    <Sql>
+      insert into tbRoute
+      (
+      RouteCode,
+      RouteName,
+      LandMarks,
+      RouteWorkType,
+      StationNo,
+      DirectionForStation
+      ) values (
+      $RouteCode$,
+      '$RouteName$',
+      '$LandMarks$',
+      $RouteWorkType$,
+      $StationNo$,
+      $DirectionForStation$
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveRoutePropertyByRouteID">
+    <RuleName>保存线路属性</RuleName>
+    <Sql>
+      insert into tbRoutePoint
+      (
+      RouteCode,
+      LandCode,
+      Area,
+      IsWaitArea
+      ) select
+      $RouteCode$ as RouteCode,
+      LandCode,
+      Area,
+      IsWaitArea
+      from tbRoutePoint
+      where RouteCode=$OrialRouteCode$
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveRouteActionsByRouteID">
+    <RuleName>保存线路动作</RuleName>
+    <Sql>
+      insert into tbRouteLandMarkCmdList
+      (
+      RouteID,
+      CmdCode,
+      LandMarkCode,
+      CmdIndex,
+      DelayTime,
+      CmdPara
+      ) select
+      $RouteCode$ as RouteID,
+      CmdCode,
+      LandMarkCode,
+      CmdIndex,
+      DelayTime,
+      CmdPara
+      from tbRouteLandMarkCmdList
+      where RouteID=$OrialRouteCode$
+    </Sql>
+  </rule>
+  <rule RuleCode="getMaxSegmentResID">
+    <RuleName>取线段最大值</RuleName>
+    <Sql>
+      select coalesce(max(SegmentResID),1) SegmentResID
+      from tbSegmentRes
+    </Sql>
+  </rule>
+  <rule RuleCode="getSegmentResByLandCode">
+    <RuleName>根据起止地标取线段</RuleName>
+    <Sql>
+      select SegmentResID
+      from tbSegmentRes
+      where StartLandmark=$StartLandMarkID$
+      and EndLandmark=$EndLandMarkID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SavetbSegmentRes">
+    <RuleName>保存线路对应的线段</RuleName>
+    <Sql>
+      insert into tbSegmentRes
+      (
+      SegmentResID,
+      StartLandmark,
+      EndLandmark
+      ) values (
+      $SegmentResID$,
+      $StartLandMarkID$,
+      $EndLandMarkID$
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveRouteToSegmentRes">
+    <RuleName>保存线路对应的线段</RuleName>
+    <Sql>
+      insert into tbRouteToSegmentRes
+      (
+      RouteID,
+      SegmentResID,
+      DirID
+      ) values (
+      $RouteCode$,
+      $SegmentResID$,
+      $DirID$
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveRouteToAGV">
+    <RuleName>保存线路对照AGV</RuleName>
+    <Sql>
+      insert into tbRouteToAgvRoute
+      (
+      RouteID,
+      CarCode,
+      CarRouteID
+      ) values (
+      $RouteCode$,
+      $CarCode$,
+      $CarRouteID$
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="GetUserInfo">
+    <RuleName>加载用户信息</RuleName>
+    <Sql>
+      select UserID,
+      PassWord,
+      UserName
+      from tbUser
+      where UserID='$UserID$' and PassWord='$PassWord$'
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadtbDetailQuery">
+    <RuleName>查询报表信息表</RuleName>
+    <Sql>
+      select
+      QueryCode,
+      QueryName,
+      sqlStr
+      from tbDetailQuery
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadConditon">
+    <RuleName>查询报表条件表</RuleName>
+    <Sql>
+      select
+      QueryCode,
+      ConditionCode,
+      ConditionName,
+      ConditionValue,
+      control_type,
+      X,
+      Y
+      from tbDetailCondition
+      where QueryCode='$QueryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadField">
+    <RuleName>获取报表字段信息</RuleName>
+    <Sql>
+      select
+      QueryCode,
+      FiledCode,
+      FiledName,
+      SummaryType
+      from tbDetailQueryFiled
+      where QueryCode='$QueryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadDetailQuery">
+    <RuleName>根据编码查询报表信息表</RuleName>
+    <Sql>
+      select
+      QueryCode,
+      QueryName,
+      sqlStr
+      from tbDetailQuery
+      where QueryCode='$QueryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadQueryFiled">
+    <RuleName>获取报表字段信息</RuleName>
+    <Sql>
+      select
+      QueryCode,
+      FiledCode,
+      FiledName,
+      SummaryType
+      from tbDetailQueryFiled
+      where QueryCode='$QueryCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="ExcuteDetailQuerySQL">
+    <RuleName>执行报表查询sql</RuleName>
+    <Sql>
+      $sql$
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleBI">
+    <RuleName>删除报表</RuleName>
+    <Sql>
+      delete from tbDetailCondition where QueryCode='$QueryCode$';
+      delete from tbDetailQueryFiled where QueryCode='$QueryCode$';
+      delete from tbDetailQuery where QueryCode='$QueryCode$';
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveDetailQuery">
+    <RuleName>保存明细查询表</RuleName>
+    <Sql>
+      insert into tbDetailQuery
+      (
+      QueryCode,
+      QueryName,
+      sqlStr
+      ) values (
+      '$QueryCode$',
+      '$QueryName$',
+      '$sqlStr$'
+      );
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveDetailQueryConditon">
+    <RuleName>保存明细查询条件表</RuleName>
+    <Sql>
+      insert into tbDetailCondition
+      (
+      QueryCode,
+      ConditionCode,
+      ConditionName,
+      ConditionValue,
+      control_type,
+      X,
+      Y
+      ) values (
+      '$QueryCode$',
+      '$ConditionCode$',
+      '$ConditionName$',
+      '$ConditionValue$',
+      $control_type$,
+      $X$,
+      $Y$
+      );
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveQueryFiled">
+    <RuleName>保存报表字段</RuleName>
+    <Sql>
+      insert into tbDetailQueryFiled
+      (
+      QueryCode,
+      FiledCode,
+      FiledName,
+      SummaryType
+      ) values (
+      '$QueryCode$',
+      '$FiledCode$',
+      '$FiledName$',
+      $SummaryType$
+      );
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadAllArea">
+    <RuleName>加载区域档案</RuleName>
+    <Sql>
+      select * from tbAreaInfo
+    </Sql>
+  </rule>
+  <rule RuleCode="deleArea">
+    <RuleName>删除所有的区域信息</RuleName>
+    <Sql>
+      delete from tbAreaInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveArea">
+    <RuleName>保存所有的区域信息</RuleName>
+    <Sql>
+      insert into tbAreaInfo
+      (
+      OwnArea,
+      AreaName
+      ) values (
+      $OwnArea$,
+      '$AreaName$'
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadAllMaterial">
+    <RuleName>加载区域档案</RuleName>
+    <Sql>
+      select * from tbMaterialInfo
+    </Sql>
+  </rule>
+  <rule RuleCode="deleMaterial">
+    <RuleName>删除所有的区域信息</RuleName>
+    <Sql>
+      delete from tbMaterialInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveMaterial">
+    <RuleName>保存所有的区域信息</RuleName>
+    <Sql>
+      insert into tbMaterialInfo
+      (
+      MaterialType,
+      MaterialName
+      ) values (
+      $MaterialType$,
+      '$MaterialName$'
+      )
+    </Sql>
+  </rule>
+  <rule RuleCode="LoadAllAction">
+    <RuleName>加载区域档案</RuleName>
+    <Sql>
+      select * from tbActionInfo
+    </Sql>
+  </rule>
+  <rule RuleCode="deleAction">
+    <RuleName>删除所有的区域信息</RuleName>
+    <Sql>
+      delete from tbActionInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveAction">
+    <RuleName>保存所有的区域信息</RuleName>
+    <Sql>
+      insert into tbActionInfo
+      (
+      ActionID,
+      ActionName,
+      WaitTime,
+      CommondText
+      ) values (
+      $ActionID$,
+      '$ActionName$',
+      $WaitTime$,
+      '$CommondText$'
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadCallBox">
+    <RuleName>加载所有的呼叫盒信息</RuleName>
+    <Sql>
+      select * from  tbCallBoxInfo
+    </Sql>
+  </rule>
+  
+  <rule RuleCode="DeleCallInfo">
+    <RuleName>删除呼叫盒</RuleName>
+    <Sql>
+      delete from tbCallBoxInfo where CallBoxID=$CallBoxID$;
+      delete from tbCallBoxDetail  where CallBoxID=$CallBoxID$;
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleCalldetail">
+    <RuleName>删除呼叫盒地标信息</RuleName>
+    <Sql>
+      delete from tbCallBoxDetail  where CallBoxID=$CallBoxID$;
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveCallInfo">
+    <RuleName>保存呼叫盒</RuleName>
+    <Sql>
+      delete from tbCallBoxInfo where CallBoxID=$CallBoxID$;
+      insert into tbCallBoxInfo
+      (
+      CallBoxID,
+      CallBoxName
+      ) values
+      (
+      $CallBoxID$,
+      '$CallBoxName$'
+      );
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveCalldetail">
+    <RuleName>保存呼叫盒明细</RuleName>
+    <Sql>
+      delete from tbCallBoxDetail where CallBoxID=$CallBoxID$ and ButtonID=$ButtonID$;
+      insert into tbCallBoxDetail
+      (
+      CallBoxID,
+      ButtonID,
+      TaskConditonCode,
+      OperaType,
+      LocationID,
+      LocationState
+      ) values
+      (
+      $CallBoxID$,
+      $ButtonID$,
+      '$TaskConditonCode$',
+      $OperaType$,
+      $LocationID$,
+      $LocationState$
+      );
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskConfigInfo">
+    <RuleName>加载所有的任务条件配置信息</RuleName>
+    <Sql>
+      select distinct * from  tbTaskConfigInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskMustPassLands">
+    <RuleName>加载任务条件必经地标信息</RuleName>
+    <Sql>
+      select * from  tbTaskConfigMustPass
+      where TaskConditonCode='$TaskConditonCode$'
+      and TaskConfigDetailID=$TaskConfigDetailID$
+      order by DetailID asc
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskMustPassLandsAction">
+    <RuleName>加载任务条件地标相应动作信息</RuleName>
+    <Sql>
+      select a.*,coalesce(b.ActionName,'') ActionName,b.IsPass,b.IsWait,b.DeviceID,b.TerminalType,
+      b.TerminalID,coalesce(b.TerminalData,'') TerminalData,b.WaitTime,coalesce(c.DeviceName,'') DeviceName
+      from  tbTaskMustPassToIOAction a
+      left join tbIOActionInfo b on a.ActionID=b.ActionID
+      left join tbIODeviceInfo c on b.DeviceID=c.ID
+      where a.TaskConditonCode='$TaskConditonCode$'
+      and a.TaskConfigDetailID=$TaskConfigDetailID$
+      and a.MustPassLandCode='$MustPassLandCode$'
+      order by a.DetailID asc
+    </Sql>
+  </rule>
+  
+  <rule RuleCode="LoadTaskConfigDetails">
+    <RuleName>加载任务条件配置明细</RuleName>
+    <Sql>
+      select * from  tbTaskConfigDetail where TaskConditonCode='$TaskConditonCode$'
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleTaskConfig">
+    <RuleName>删除任务条件配置</RuleName>
+    <Sql>
+      delete from tbTaskConfigInfo where TaskConditonCode='$TaskConditonCode$';
+      delete from tbTaskConfigDetail  where TaskConditonCode='$TaskConditonCode$';
+      delete from tbTaskConfigMustPass  where TaskConditonCode='$TaskConditonCode$';
+    </Sql>
+  </rule>
+
+  <rule RuleCode="load_TaskDetail">
+    <RuleName>查询任务配置明细</RuleName>
+    <Sql>
+      select * from tbTaskConfigDetail where TaskConditonCode='$TaskConditonCode$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadMustPassByConfigDetail">
+    <RuleName>加载任务必经地标</RuleName>
+    <Sql>
+      select * from  tbTaskConfigMustPass where TaskConditonCode='$TaskConditonCode$' and TaskConfigDetailID=$DetailID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveTaskConfig">
+    <RuleName>保存任务配置主表</RuleName>
+    <Sql>
+      delete from tbTaskConfigInfo where TaskConditonCode=$TaskConditonCode$;
+      insert into tbTaskConfigInfo
+      (
+      TaskConditonCode,
+      TaskConditonName
+      ) values
+      (
+      '$TaskConditonCode$',
+      '$TaskConditonName$'
+      );
+    </Sql>
+  </rule>
+  <rule RuleCode="DeleTaskConfigdetail">
+    <RuleName>删除任务配置明细</RuleName>
+    <Sql>
+      delete from tbTaskConfigDetail  where TaskConditonCode='$TaskConditonCode$';
+    </Sql>
+  </rule>
+  <rule RuleCode="SaveTaskConfigdetail">
+    <RuleName>保存任务配置明细</RuleName>
+    <Sql>
+      delete from tbTaskConfigDetail where TaskConditonCode='$TaskConditonCode$' and DetailID=$DetailID$;
+      insert into tbTaskConfigDetail
+      (
+      TaskConditonCode,
+      DetailID,
+      ArmOwnArea,
+      StorageState,
+      MaterialType,
+      Action,
+      IsWaitPass
+      ) values
+      (
+      '$TaskConditonCode$',
+      $DetailID$,
+      $ArmOwnArea$,
+      $StorageState$,
+      $MaterialType$,
+      $Action$,
+      $IsWaitPass$
+      );
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveTaskConfigMustPass">
+    <RuleName>任务条件配置必经地标</RuleName>
+    <Sql>
+      delete from tbTaskConfigMustPass where TaskConditonCode='$TaskConditonCode$' and TaskConfigDetailID=$TaskConfigDetailID$ and DetailID=$DetailID$;
+      insert into tbTaskConfigMustPass
+      (
+      TaskConditonCode,
+      TaskConfigDetailID,
+      DetailID,
+      MustPassLandCode,
+      Action
+      ) values
+      (
+      '$TaskConditonCode$',
+      $TaskConfigDetailID$,
+      $DetailID$,
+      '$MustPassLandCode$',
+      $Action$
+      );
+    </Sql>
+  </rule>
+
+
+
+
+
+
+  <rule RuleCode="GetAllSegment">
+    <RuleName>获得所有小车路线关联线段</RuleName>
+    <Sql>
+      select   BeginLandMakCode, 
+      EndLandMarkCode,
+      Length,
+      ExcuteAngle,
+      ExcuteMoveDirect,
+      ExcuteTurnDirect,
+      SegmentType,
+      Point1X,
+      Point1Y,
+      Point2X,
+      Point2Y,
+      Point3X,
+      Point3Y,
+      Point4X,
+      Point4Y
+      from   tbAllSegment
+    </Sql>
+  </rule>
+  
+  <rule RuleCode="LoadStorages">
+    <RuleName>获得所有储位</RuleName>
+    <Sql>
+      select  *,StorageState as PreStorageState from  tbLocaton
+    </Sql>
+  </rule>
+  
+  <rule RuleCode="LoadCallBoxDetails">
+    <RuleName>加载呼叫盒明细</RuleName>
+    <Sql>
+      select * from  tbCallBoxDetail where CallBoxID=$CallBoxID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadCallBoxByID">
+    <RuleName>根据ID加载呼叫盒信息</RuleName>
+    <Sql>
+      select * from  tbCallBoxInfo where CallBoxID=$CallBoxID$
+    </Sql>
+  </rule>
+  
+  <rule RuleCode="ChekAllowCreatTask">
+    <RuleName>判断当前呼叫点是否可以再次呼叫</RuleName>
+    <Sql>
+      select count(1) Amount from tbDispatchTaskInfo
+      where stationNo=$CallBoxID$
+      and CallLand='$CallLand$'
+      and TaskState in(0,1)
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveTask">
+    <RuleName>添加任务</RuleName>
+    <Sql>
+      $sql$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadSystem">
+    <RuleName>查询系统参数</RuleName>
+    <Sql>
+      <![CDATA[
+        select  A.ParameterCode ParameterCode,case when b.ParameterValue <> 'NULL' then b.ParameterValue else a.DefaultValue end ParameterValue
+        from   tbSystermModel a  
+        Left join  tbSysParamater  b On A.ParameterCode =B.ParameterCode  
+       ]]>
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateTaskInfo">
+    <RuleName>更新任务完成</RuleName>
+    <Sql>
+      UPDATE  tbDispatchTaskInfo
+      SET  TaskState =$State$,FinishTime ='$FinishTime$'
+      where  dispatchNo ='$dispatchNo$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateTaskDetail">
+    <RuleName>更新任务状态执行</RuleName>
+    <Sql>
+      UPDATE  tbDispatchTaskInfo
+      SET ExeAgvID ='$ExeAgvID$',TaskState = '$TaskState$',ExeTime='$ExeTime$'
+      where  dispatchNo ='$dispatchNo$';
+
+      UPDATE tbDispatchTaskDetail
+      set State=$TaskState$
+      where dispatchNo='$dispatchNo$'
+      and LandCode='$LandCode$'
+      and DetailID=$TaskDetialID$;
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="LoadTaskInfo">
+    <RuleName>加载调度任务</RuleName>
+    <Sql>
+      select
+      dispatchNo,
+      stationNo,
+      taskType,
+      ExeAgvID,
+      BuildTime,
+      TaskState,
+      FinishTime,
+      ExeTime,
+      CallLand
+      from tbDispatchTaskInfo
+      where (SUBSTRING(BuildTime,1,8) between '$PreDate$' and '$CurrDate$')
+      and TaskState in ($TaskState$)
+      order by BuildTime asc
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="LoadTaskDetail">
+    <RuleName>加载调度任务明细</RuleName>
+    <Sql>
+      select *
+      from tbDispatchTaskDetail
+      where dispatchNo='$dispatchNo$'
+      order by DetailID asc
+    </Sql>
+  </rule>
+
+  <rule RuleCode="ReleaseStore">
+    <RuleName>解锁储位状态</RuleName>
+    <Sql>
+      UPDATE  tbLocaton
+      SET   StorageState =$StorageState$ ,LockState = 0 ,LockCar = ''
+      where  LankMarkCode='$landmarkcode$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateTaskDetailForFinish">
+    <RuleName>更新任务明细状态完成</RuleName>
+    <Sql>
+      UPDATE tbDispatchTaskInfo
+      set TaskState=1,ExeAgvID=$ExeAgvID$
+      where dispatchNo='$dispatchNo$'
+      and TaskState=0;
+
+      UPDATE tbDispatchTaskDetail
+      set State=2
+      where dispatchNo='$dispatchNo$'
+      and LandCode='$LandCode$'
+      and  DetailID=$TaskDetailID$;
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateTaskForFinish">
+    <RuleName>更新任务主表状态完成</RuleName>
+    <Sql>
+      update tbDispatchTaskInfo set TaskState=2
+      where 0=(
+      select count(1) Amount
+      from tbDispatchTaskDetail
+      where dispatchNo='$dispatchNo$'
+      and State!=2
+      )
+      and dispatchNo='$dispatchNo$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="CheckTaskIsFinish">
+    <RuleName>判断任务是否已完成</RuleName>
+    <Sql>
+      select *
+      from tbDispatchTaskDetail
+      where dispatchNo='$dispatchNo$' and State in (0,1)
+    </Sql>
+  </rule>
+  
+  <rule RuleCode="ReleaseCar">
+    <RuleName>放行</RuleName>
+    <Sql>
+      UPDATE tbDispatchTaskDetail
+      set IsAllowExcute=1
+      where dispatchNo='$TaskNo$'
+      and LandCode='$LandCode$'
+      and DetailID=(
+      select coalesce(min(DetailID),0)
+      from tbDispatchTaskDetail
+      where IsAllowExcute=0
+      and dispatchNo='$TaskNo$'
+      and LandCode='$LandCode$'
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateStore">
+    <RuleName>更新储位</RuleName>
+    <Sql>
+      UPDATE tbLocaton
+      set StorageState=$StorageState$
+      where ID=$ID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadAllIODeviceType">
+    <RuleName>加载所有io设备类型</RuleName>
+    <Sql>
+      SELECT
+      IODeviceType ,IODeviceName
+      FROM tbIODeviceTypeInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="DeleteType">
+    <RuleName>删除所有类型</RuleName>
+    <Sql>
+      DELETE FROM tbIODeviceTypeInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="InsertType">
+    <RuleName>插入所有类型</RuleName>
+    <Sql>
+      INSERT INTO  tbIODeviceTypeInfo(IODeviceType ,IODeviceName)
+      VALUES($IODeviceType$ ,'$IODeviceName$')
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadIODeviceInfo">
+    <RuleName>加载电梯IO档案</RuleName>
+    <Sql>
+      select  * from  tbIODeviceInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadIOPortByIOID">
+    <RuleName>根据IOID获得IO配置</RuleName>
+    <Sql>
+      select  * from  tbIODeviceInfo where ID=$ID$ and IODeviceType=$IODeviceType$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="DeleteIOByID">
+    <RuleName>删除IO</RuleName>
+    <Sql>
+      delete  from  tbIODeviceDetail  where ID=$ID$ and IODeviceType=$IODeviceType$;
+      delete from  tbIODeviceInfo where  ID=$ID$  and IODeviceType=$IODeviceType$;
+    </Sql>
+  </rule>
+
+  <rule RuleCode="InsertIOInfo">
+    <RuleName>插入IO</RuleName>
+    <Sql>
+      insert  into  tbIODeviceInfo (ID,IODeviceType,DeviceName,IP,Port,PackHeader,PackEnd)
+      values ($ID$,$IODeviceType$,'$DeviceName$','$IP$','$Port$','$PackHeader$','$PackEnd$')
+    </Sql>
+  </rule>
+
+  <rule RuleCode="InsertIOPortConfig">
+    <RuleName>插入IO端子</RuleName>
+    <Sql>
+      insert into  tbIODeviceDetail (ID,IODeviceType,TerminalID,BeginAddress,FunctionCode,DataLenth,Data,Remark)
+      values($itemID$,$itemIODeviceType$,$TerminalID$,'$BeginAddress$','$FunctionCode$',$DataLenth$,'$Data$','$Remark$');
+    </Sql>
+  </rule>
+</config>

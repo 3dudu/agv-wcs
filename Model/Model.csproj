@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0FF6131-C26D-4EC9-9898-984E477DB213}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CarInfoExtend\CarInfo.cs" />
+    <Compile Include="Comoon\CurrentLogin.cs" />
+    <Compile Include="Comoon\DetailCondition.cs" />
+    <Compile Include="Comoon\DetailQueryFiled.cs" />
+    <Compile Include="Comoon\DetailQueryInfo.cs" />
+    <Compile Include="Comoon\DispatchAssembly.cs" />
+    <Compile Include="Comoon\SysOperButton.cs" />
+    <Compile Include="Comoon\SysOprButtonToCategory.cs" />
+    <Compile Include="Comoon\TraJunctionSegInfo.cs" />
+    <Compile Include="Comoon\UserCategory.cs" />
+    <Compile Include="Comoon\UserInfo.cs" />
+    <Compile Include="Comoon\XMLConstClass.cs" />
+    <Compile Include="MDM\BackTaskInfo.cs" />
+    <Compile Include="MDM\LandmarkToActionsInfo.cs" />
+    <Compile Include="MDM\MoveDirectEnum.cs" />
+    <Compile Include="MDM\PdaInfo.cs" />
+    <Compile Include="MDM\PdaOperSetInfo.cs" />
+    <Compile Include="MDM\ProduceBillInfo.cs" />
+    <Compile Include="MDM\RouteFragmentConfigInfo.cs" />
+    <Compile Include="MDM\RouteFragmentInfo.cs" />
+    <Compile Include="MDM\ScheduingInfo.cs" />
+    <Compile Include="MSM\IOActionInfo.cs" />
+    <Compile Include="MDM\AllSegment.cs" />
+    <Compile Include="MDM\AreaInfo.cs" />
+    <Compile Include="MDM\CallBoxDetail.cs" />
+    <Compile Include="MDM\CallBoxInfo.cs" />
+    <Compile Include="MDM\CarBaseStateInfo.cs" />
+    <Compile Include="MDM\ChargeStationInfo.cs" />
+    <Compile Include="MDM\CmdInfo.cs" />
+    <Compile Include="Comoon\DataBaseInfo.cs" />
+    <Compile Include="Comoon\DataBaseTypeEnum.cs" />
+    <Compile Include="MDM\DispatchTaskDetail.cs" />
+    <Compile Include="MDM\DispatchTaskInfo.cs" />
+    <Compile Include="MDM\LandmarkInfo.cs" />
+    <Compile Include="MDM\MaterialInfo.cs" />
+    <Compile Include="MDM\RouteInfo.cs" />
+    <Compile Include="MDM\RouteTypeEnum.cs" />
+    <Compile Include="MDM\SegmentResInfo.cs" />
+    <Compile Include="MDM\TaskConfigDetail.cs" />
+    <Compile Include="MDM\TaskConfigInfo.cs" />
+    <Compile Include="MDM\TaskConfigMustPass.cs" />
+    <Compile Include="MDM\TraJunction.cs" />
+    <Compile Include="MSM\IODeviceInfo.cs" />
+    <Compile Include="MSM\LockResource.cs" />
+    <Compile Include="Comoon\OperateReturnInfo.cs" />
+    <Compile Include="Comoon\ParameterMode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MDM\SpeRunDirConfigInfo.cs" />
+    <Compile Include="MDM\StorageInfo.cs" />
+    <Compile Include="MDM\SwayEnum.cs" />
+    <Compile Include="Comoon\SysParameter.cs" />
+    <Compile Include="MDM\TrafficController.cs" />
+    <Compile Include="SimulateTcpCar\Parameter.cs" />
+    <Compile Include="SimulateTcpCar\SimulateCommand.cs" />
+    <Compile Include="SimulateTcpCar\SimulationAGVInstructions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2BAB32D9-8A3C-4DDB-A3A3-D666A4BB9131}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Simulation</RootNamespace>
+    <AssemblyName>Simulation</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AGV.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AnyCAD.Foundation.Net, Version=1.0.5005.33863, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\AnyCAD.Foundation.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="AuthorizeBase">
+      <HintPath>..\Dll\AuthorizeBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Canvas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Canvas.dll</HintPath>
+    </Reference>
+    <Reference Include="Canvas3D, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Canvas3D.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonTools">
+      <HintPath>..\Dll\CommonTools.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v15.2" />
+    <Reference Include="DevExpress.Data.v15.2" />
+    <Reference Include="DevExpress.Utils.v15.2" />
+    <Reference Include="DevExpress.Sparkline.v15.2.Core" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="ShilinetSoftVerify">
+      <HintPath>..\Dll\ShilinetSoftVerify.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Simulation3D\FrmSimula3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulation3D\FrmSimula3D.Designer.cs">
+      <DependentUpon>FrmSimula3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationCommon\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationCommon\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmAGVAchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmAGVAchive.Designer.cs">
+      <DependentUpon>FrmAGVAchive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmDirectionSet .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmDirectionSet .Designer.cs">
+      <DependentUpon>FrmDirectionSet .cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmOption.Designer.cs">
+      <DependentUpon>FrmOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmSimulationCallBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationCommon\FrmSimulationCallBox.Designer.cs">
+      <DependentUpon>FrmSimulationCallBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationCommon\MsgBox.cs" />
+    <Compile Include="SimulationExternalForm\FrmAreaSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmAreaSet.Designer.cs">
+      <DependentUpon>FrmAreaSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmCallBoxDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmCallBoxDetail.Designer.cs">
+      <DependentUpon>FrmCallBoxDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmCallBoxSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmCallBoxSet.Designer.cs">
+      <DependentUpon>FrmCallBoxSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmMaterialSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmMaterialSet.Designer.cs">
+      <DependentUpon>FrmMaterialSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmTaskConfigDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmTaskConfigDetail.Designer.cs">
+      <DependentUpon>FrmTaskConfigDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmTaskConfigInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationExternalForm\FrmTaskConfigInfo.Designer.cs">
+      <DependentUpon>FrmTaskConfigInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmSysConnSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmSysConnSet.Designer.cs">
+      <DependentUpon>FrmSysConnSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmSystemConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmSystemConfig.Designer.cs">
+      <DependentUpon>FrmSystemConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmTestPointToPoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationSysForm\FrmTestPointToPoint.Designer.cs">
+      <DependentUpon>FrmTestPointToPoint.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simulation3D\FrmSimula3D.resx">
+      <DependentUpon>FrmSimula3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationCommon\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationCommon\FrmAGVAchive.resx">
+      <DependentUpon>FrmAGVAchive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationCommon\FrmDirectionSet .resx">
+      <DependentUpon>FrmDirectionSet .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationCommon\FrmOption.resx">
+      <DependentUpon>FrmOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationCommon\FrmSimulationCallBox.resx">
+      <DependentUpon>FrmSimulationCallBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationExternalForm\FrmAreaSet.resx">
+      <DependentUpon>FrmAreaSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationExternalForm\FrmCallBoxDetail.resx">
+      <DependentUpon>FrmCallBoxDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationExternalForm\FrmCallBoxSet.resx">
+      <DependentUpon>FrmCallBoxSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationExternalForm\FrmMaterialSet.resx">
+      <DependentUpon>FrmMaterialSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationExternalForm\FrmTaskConfigDetail.resx">
+      <DependentUpon>FrmTaskConfigDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationExternalForm\FrmTaskConfigInfo.resx">
+      <DependentUpon>FrmTaskConfigInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationSysForm\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationSysForm\FrmSysConnSet.resx">
+      <DependentUpon>FrmSysConnSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationSysForm\FrmSystemConfig.resx">
+      <DependentUpon>FrmSystemConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationSysForm\FrmTestPointToPoint.resx">
+      <DependentUpon>FrmTestPointToPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\Model.MDM.AreaInfo.datasource" />
+    <None Include="Properties\DataSources\Model.MDM.CmdInfo.datasource" />
+    <None Include="Properties\DataSources\Model.MDM.MaterialInfo.datasource" />
+    <None Include="Properties\DataSources\Model.MDM.TaskConfigInfo.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Beszi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AGVDAccess\AGVDAccess.csproj">
+      <Project>{4c91cd1a-7ff5-446b-be81-dc2677f1d427}</Project>
+      <Name>AGVDAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{c0ff6131-c26d-4ec9-9898-984e477db213}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimulationModel\SimulationModel.csproj">
+      <Project>{7c381f7a-f4c0-48f2-a49c-561065a49802}</Project>
+      <Name>SimulationModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocketClient\SocketClient.csproj">
+      <Project>{7b0cd545-3b28-4b5a-8ba3-a71a4b9a2c08}</Project>
+      <Name>SocketClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocketModel\SocketModel.csproj">
+      <Project>{a66ede9a-282e-4586-8320-4f4a235b4e50}</Project>
+      <Name>SocketModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLServerOperator\SQLServerOperator.csproj">
+      <Project>{78efbba1-1de7-411f-ba6d-37ae772f2f5e}</Project>
+      <Name>SQLServerOperator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tool\Tool.csproj">
+      <Project>{f6204cd1-dad9-47b2-9285-36b4a9ffbde6}</Project>
+      <Name>Tool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\break.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expand.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Land.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PointBeszi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PointLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expand1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCallBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\break1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn1png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CallBoxClose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AGV.ico" />
+    <EmbeddedResource Include="DataSource.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="SQLXML\SQL.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

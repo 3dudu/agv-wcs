@@ -1,0 +1,1 @@
+﻿DBIP:.,DBName:AGV_v3.0,DBUser:sa,DBPass:123qwe!@#,ServerIP:127.0.0.1,ServerPort:6000

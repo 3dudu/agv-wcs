@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <serverconfig>
+    <port>2019</port>
+    <maxclient>10</maxclient>
+    <rcvtimeout>100</rcvtimeout>
+    <sendtimeout>100</sendtimeout>
+    <buffersize>128</buffersize>
+  </serverconfig>
+</config>

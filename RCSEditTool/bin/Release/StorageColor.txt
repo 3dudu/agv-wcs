@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <StorageColor>
+    <NullStorageColor>255,255,255</NullStorageColor>
+    <FillShelfStorageColor>0,250,154</FillShelfStorageColor>
+    <BackGroundColor>219,229,241</BackGroundColor>
+    <EmptyShelfStorageColor>173,216,230</EmptyShelfStorageColor>
+  </StorageColor>
+</config>

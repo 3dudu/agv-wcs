@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <rule RuleCode="LoadAGVAchive">
+    <RuleName>加载AGV档案</RuleName>
+    <Sql>
+      select CarCode as AgvID,
+      CarName as CarName,
+      CarState as IsUse,
+      CarIP,
+      CarPort,
+      StandbyLandMark
+      from tbCar
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadStorages">
+    <RuleName>加载储位档案</RuleName>
+    <Sql>
+      select
+      ID,
+      StorageName,
+      OwnArea,
+      SubOwnArea,
+      matterType,
+      LankMarkCode,
+      StorageState,
+      LockState,
+      MaterielType
+      from tbLocaton
+      order by ID asc
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadAllMaterial">
+    <RuleName>加载区域档案</RuleName>
+    <Sql>
+      select * from tbMaterialInfo
+    </Sql>
+  </rule>
+  
+</config>

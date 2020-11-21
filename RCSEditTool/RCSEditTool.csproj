@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F93F64EE-C161-4299-895E-234DDC483F07}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RCSEditTool</RootNamespace>
+    <AssemblyName>RCSEditTool</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>EditClient.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\CommonTools.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v15.2" />
+    <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v15.2" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.2" />
+    <Reference Include="DevExpress.Sparkline.v15.2.Core" />
+    <Reference Include="DevExpress.Utils.v15.2.UI, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.2.Wizard, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="ShilinetSoftVerify">
+      <HintPath>..\Dll\ShilinetSoftVerify.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmCommon\FrmJuctionSeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCommon\FrmJuctionSeg.Designer.cs">
+      <DependentUpon>FrmJuctionSeg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCommon\FrmMapOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCommon\FrmMapOption.Designer.cs">
+      <DependentUpon>FrmMapOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCommon\FrmOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCommon\FrmOption.Designer.cs">
+      <DependentUpon>FrmOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCommon\MsgBox.cs" />
+    <Compile Include="FrmExternal\FormSelectIOAction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FormSelectIOAction.Designer.cs">
+      <DependentUpon>FormSelectIOAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmChargeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmChargeInfo.Designer.cs">
+      <DependentUpon>FrmChargeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmFragmentSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmFragmentSet.designer.cs">
+      <DependentUpon>FrmFragmentSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmIOActionSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmIOActionSet.Designer.cs">
+      <DependentUpon>FrmIOActionSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmIODeviceInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmIODeviceInfo.Designer.cs">
+      <DependentUpon>FrmIODeviceInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmPad.Designer.cs">
+      <DependentUpon>FrmPad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmPdaOperSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmPdaOperSet.Designer.cs">
+      <DependentUpon>FrmPdaOperSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmRouteLineSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmRouteLineSet.designer.cs">
+      <DependentUpon>FrmRouteLineSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmIOActionInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmIOActionInfo.Designer.cs">
+      <DependentUpon>FrmIOActionInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAddCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAddCategory.designer.cs">
+      <DependentUpon>FrmAddCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAddUser.designer.cs">
+      <DependentUpon>FrmAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAGVAchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAGVAchive.Designer.cs">
+      <DependentUpon>FrmAGVAchive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAGVCommod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAGVCommod.Designer.cs">
+      <DependentUpon>FrmAGVCommod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmAreaSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmAreaSet.Designer.cs">
+      <DependentUpon>FrmAreaSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmCallBoxDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmCallBoxDetail.Designer.cs">
+      <DependentUpon>FrmCallBoxDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmCallBoxSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmCallBoxSet.Designer.cs">
+      <DependentUpon>FrmCallBoxSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAssemblyConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmAssemblyConfig.Designer.cs">
+      <DependentUpon>FrmAssemblyConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmCmdToAgv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmCmdToAgv.Designer.cs">
+      <DependentUpon>FrmCmdToAgv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmConditonSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmConditonSet.designer.cs">
+      <DependentUpon>FrmConditonSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmTaskConfigInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmTaskConfigInfo.Designer.cs">
+      <DependentUpon>FrmTaskConfigInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmDetailQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmDetailQuery.designer.cs">
+      <DependentUpon>FrmDetailQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmDetailQueryFiled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmDetailQueryFiled.designer.cs">
+      <DependentUpon>FrmDetailQueryFiled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmDetailSqlSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmDetailSqlSet.designer.cs">
+      <DependentUpon>FrmDetailSqlSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmDirectionSet .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmDirectionSet .designer.cs">
+      <DependentUpon>FrmDirectionSet .cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmLandCooraSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmLandCooraSet.Designer.cs">
+      <DependentUpon>FrmLandCooraSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmLogin.designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmMainView.Designer.cs">
+      <DependentUpon>FrmMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmMaterialSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmMaterialSet.Designer.cs">
+      <DependentUpon>FrmMaterialSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmSysAut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmSysAut.designer.cs">
+      <DependentUpon>FrmSysAut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmSysConnSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmSysConnSet.Designer.cs">
+      <DependentUpon>FrmSysConnSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FrmSystemConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FrmSystemConfig.Designer.cs">
+      <DependentUpon>FrmSystemConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExternal\FrmTaskConfigDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExternal\FrmTaskConfigDetail.Designer.cs">
+      <DependentUpon>FrmTaskConfigDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCommon\FrmTraJunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCommon\FrmTraJunction.Designer.cs">
+      <DependentUpon>FrmTraJunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystem\FromDetailQuerySet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystem\FromDetailQuerySet.designer.cs">
+      <DependentUpon>FromDetailQuerySet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmCommon\FrmJuctionSeg.resx">
+      <DependentUpon>FrmJuctionSeg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCommon\FrmMapOption.resx">
+      <DependentUpon>FrmMapOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCommon\FrmOption.resx">
+      <DependentUpon>FrmOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FormSelectIOAction.resx">
+      <DependentUpon>FormSelectIOAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmChargeInfo.resx">
+      <DependentUpon>FrmChargeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmFragmentSet.resx">
+      <DependentUpon>FrmFragmentSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmIOActionSet.resx">
+      <DependentUpon>FrmIOActionSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmIODeviceInfo.resx">
+      <DependentUpon>FrmIODeviceInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmPad.resx">
+      <DependentUpon>FrmPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmPdaOperSet.resx">
+      <DependentUpon>FrmPdaOperSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmRouteLineSet.resx">
+      <DependentUpon>FrmRouteLineSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmIOActionInfo.resx">
+      <DependentUpon>FrmIOActionInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmAddCategory.resx">
+      <DependentUpon>FrmAddCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmAddUser.resx">
+      <DependentUpon>FrmAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmAGVAchive.resx">
+      <DependentUpon>FrmAGVAchive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmAGVCommod.resx">
+      <DependentUpon>FrmAGVCommod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmAreaSet.resx">
+      <DependentUpon>FrmAreaSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmCallBoxDetail.resx">
+      <DependentUpon>FrmCallBoxDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmCallBoxSet.resx">
+      <DependentUpon>FrmCallBoxSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmAssemblyConfig.resx">
+      <DependentUpon>FrmAssemblyConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmCmdToAgv.resx">
+      <DependentUpon>FrmCmdToAgv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmConditonSet.resx">
+      <DependentUpon>FrmConditonSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmTaskConfigInfo.resx">
+      <DependentUpon>FrmTaskConfigInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmDetailQuery.resx">
+      <DependentUpon>FrmDetailQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmDetailQueryFiled.resx">
+      <DependentUpon>FrmDetailQueryFiled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmDetailSqlSet.resx">
+      <DependentUpon>FrmDetailSqlSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmDirectionSet .resx">
+      <DependentUpon>FrmDirectionSet .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmLandCooraSet.resx">
+      <DependentUpon>FrmLandCooraSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmMainView.resx">
+      <DependentUpon>FrmMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmMaterialSet.resx">
+      <DependentUpon>FrmMaterialSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmSysAut.resx">
+      <DependentUpon>FrmSysAut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmSysConnSet.resx">
+      <DependentUpon>FrmSysConnSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FrmSystemConfig.resx">
+      <DependentUpon>FrmSystemConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExternal\FrmTaskConfigDetail.resx">
+      <DependentUpon>FrmTaskConfigDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCommon\FrmTraJunction.resx">
+      <DependentUpon>FrmTraJunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystem\FromDetailQuerySet.resx">
+      <DependentUpon>FromDetailQuerySet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Model.Comoon.TraJunctionSegInfo.datasource" />
+    <None Include="Model.MDM.AreaInfo.datasource" />
+    <None Include="Model.MDM.CarBaseStateInfo.datasource" />
+    <None Include="Model.MSM.IOActionInfo.datasource" />
+    <None Include="Model.MSM.IODeviceInfo.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataSource.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="EditClient.ico" />
+    <None Include="Resources\bcir2.jpg" />
+    <Content Include="Resources\Beszi.png" />
+    <Content Include="Resources\break.jpg" />
+    <Content Include="Resources\Car.png" />
+    <Content Include="Resources\connect.png" />
+    <Content Include="Resources\cut.png" />
+    <None Include="Resources\DashLine.png" />
+    <Content Include="Resources\edit.png" />
+    <Content Include="Resources\expand.jpg" />
+    <Content Include="Resources\Fill.png" />
+    <Content Include="Resources\front1.png" />
+    <Content Include="Resources\hand2.jpg" />
+    <Content Include="Resources\image.png" />
+    <Content Include="Resources\Land.png" />
+    <Content Include="Resources\Line.png" />
+    <Content Include="Resources\move.jpg" />
+    <Content Include="Resources\null.png" />
+    <Content Include="Resources\pass_word.png" />
+    <Content Include="Resources\paste.png" />
+    <Content Include="Resources\PointBeszi.png" />
+    <Content Include="Resources\PointLine.png" />
+    <Content Include="Resources\radar.png" />
+    <Content Include="Resources\redo.jpg" />
+    <Content Include="Resources\select.jpg" />
+    <Content Include="Resources\timg.png" />
+    <Content Include="Resources\undo.jpg" />
+    <Content Include="Resources\up4.png" />
+    <Content Include="Resources\upload.png" />
+    <Content Include="Resources\user_name.png" />
+    <Content Include="SQLXML\SQL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AGVDAccess\AGVDAccess.csproj">
+      <Project>{4c91cd1a-7ff5-446b-be81-dc2677f1d427}</Project>
+      <Name>AGVDAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Canvas\Canvas.csproj">
+      <Project>{f870ccd3-21e7-4436-b93b-149ed358a1ba}</Project>
+      <Name>Canvas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{c0ff6131-c26d-4ec9-9898-984e477db213}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocketClient\SocketClient.csproj">
+      <Project>{7b0cd545-3b28-4b5a-8ba3-a71a4b9a2c08}</Project>
+      <Name>SocketClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocketModel\SocketModel.csproj">
+      <Project>{a66ede9a-282e-4586-8320-4f4a235b4e50}</Project>
+      <Name>SocketModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLServerOperator\SQLServerOperator.csproj">
+      <Project>{78efbba1-1de7-411f-ba6d-37ae772f2f5e}</Project>
+      <Name>SQLServerOperator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tool\Tool.csproj">
+      <Project>{f6204cd1-dad9-47b2-9285-36b4a9ffbde6}</Project>
+      <Name>Tool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

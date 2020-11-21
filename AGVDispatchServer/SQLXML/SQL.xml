@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+
+  <rule RuleCode="QuerySyspara">
+    <RuleName>查询系统参数</RuleName>
+    <Sql>
+      <![CDATA[
+        select  A.ParameterCode ParameterCode,case when b.ParameterValue <> 'NULL' then b.ParameterValue else a.DefaultValue end ParameterValue
+        from   tbSystermModel a  
+        Left join  tbSysParamater  b On A.ParameterCode =B.ParameterCode  
+       ]]>
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllCars">
+    <RuleName>读取所有小车</RuleName>
+    <Sql>
+      <![CDATA[
+        select CarCode AgvID,CarName,CarState as IsUse,CarIP,CarPort,StandbyLandMark,OwerArea,ChargeCode
+        from tbCar where  CarState=1;
+       ]]>
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllStore">
+    <RuleName>获得所有储位</RuleName>
+    <Sql>
+      select  *,StorageState as PreStorageState from  tbLocaton
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllLand">
+    <RuleName>读取所有地标</RuleName>
+    <Sql>
+      <![CDATA[
+      select LandCode LandmarkCode,LandName LandMarkName,Landx,Landy
+      from tblandmark
+       ]]>
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllSegment">
+    <RuleName>获得所有小车路线关联线段</RuleName>
+    <Sql>
+      select
+      BeginLandMakCode,
+      EndLandMarkCode,
+      Length,
+      ExcuteAngle,
+      ExcuteMoveDirect,
+      ExcuteTurnDirect,
+      SegmentType,
+      ExcuteAvoidance,
+      ExcuteSpeed
+      from  tbAllSegment
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryCoordinate">
+    <RuleName>加载agv地图坐标对照</RuleName>
+    <Sql>
+      select Direction,Angle from tbAGVCoordinate
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllCharge">
+    <RuleName>加载充电桩档案</RuleName>
+    <Sql>
+      select * from tbChargeInfo where State=1
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryJunction">
+    <RuleName>读取交通管制路口档案</RuleName>
+    <Sql>
+      <![CDATA[
+        select * from   tbTraJunction
+       ]]>
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryJunctionSeg">
+    <RuleName>读取交通管制路口档案对应的片段</RuleName>
+    <Sql>
+      <![CDATA[
+        select * from   tbTraJunctionSeg where TraJunctionID=$TraJunctionID$
+       ]]>
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAGVRoute">
+    <RuleName>加载每个AGV的路线</RuleName>
+    <Sql>
+      select * from tbAGVCurrentRoute where AGVID=$AGVID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="SaveAGVRoute">
+    <RuleName>加载每个AGV的路线</RuleName>
+    <Sql>
+      delete from tbAGVCurrentRoute where AGVID=$AGVID$;
+      insert into tbAGVCurrentRoute
+      (
+      AGVID,
+      RouteLandCodes
+      ) values (
+      $AGVID$,
+      '$RouteLandCodes$'
+      )
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="QueryAllIODevice">
+    <RuleName>加载所有IO设备档案</RuleName>
+    <Sql>
+      select  * from  tbIODeviceInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UnLockStock">
+    <RuleName>解锁储位状态 StorageState =$StorageState$ ,</RuleName>
+    <Sql>
+      UPDATE  tbLocaton
+      SET  StorageState =$StorageState$ ,LockState = 0 ,LockCar = '',AGVArriveTime='$AGVArriveTime$'
+      where  LankMarkCode='$landmarkcode$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="HandTaskDetail">
+    <RuleName>更新任务明细状态完成</RuleName>
+    <Sql>
+      UPDATE tbDispatchTaskDetail
+      set State=2,FinishTime='$FinishTime$'
+      where dispatchNo='$dispatchNo$'
+      and LandCode='$LandCode$'
+      and  DetailID=$TaskDetailID$;
+      
+      UPDATE  tbLocaton
+      SET  LockState = 0 ,LockCar = ''
+      where  LankMarkCode='$LandCode$';
+
+      UPDATE tbDispatchTaskDetail set IsCallGoods=2
+      where dispatchNo='$dispatchNo$'
+      and LandCode='$LandCode$'
+      and  DetailID=$TaskDetailID$
+      and IsCallGoods=1;
+
+      UPDATE tbDispatchTaskInfo
+      set FinishTime='$FinishTime$',TaskState=2
+      where not exists(
+      select 1 from tbDispatchTaskDetail
+      where dispatchNo='$dispatchNo$'
+      and State in (0,1)
+      )  and  dispatchNo='$dispatchNo$';
+     
+
+      delete from tbAGVCurrentRoute where AGVID=$AGVID$;
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskInfo">
+    <RuleName>加载调度任务</RuleName>
+    <Sql>
+      select distinct
+      a.dispatchNo,
+      a.stationNo,
+      a.taskType,
+      a.ExeAgvID,
+      a.BuildTime,
+      a.TaskState,
+      a.FinishTime,
+      a.ExeTime,
+      a.CallLand,
+      coalesce(lg.StorageName,'') StorageName,
+      OwerArea
+      from tbDispatchTaskInfo a
+      left join tbLocaton lg on a.CallLand=lg.LankMarkCode
+      where (SUBSTRING(a.BuildTime,1,8) between '$PreDate$' and '$CurrDate$')
+      and a.TaskState in ($TaskState$)
+      order by a.BuildTime asc
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskDetail">
+    <RuleName>加载调度任务明细</RuleName>
+    <Sql>
+      select distinct a.*, coalesce(lg.StorageName,'') StorageName
+      from tbDispatchTaskDetail a
+      left join tbLocaton lg on a.LandCode=lg.LankMarkCode
+      where dispatchNo='$dispatchNo$'
+      order by DetailID asc
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateTaskState">
+    <RuleName>界面手动更新任务明细</RuleName>
+    <Sql>
+      UPDATE tbDispatchTaskDetail
+      set State=$State$,FinishTime='$FinishTime$'
+      where dispatchNo='$dispatchNo$'
+      and DetailID=$TaskDetailID$;
+
+      UPDATE tbDispatchTaskDetail set IsNeedCallBack=3
+      where $State$=2 and IsNeedCallBack=1
+      and dispatchNo='$dispatchNo$'
+      and DetailID=$TaskDetailID$;
+
+      --如果是手工重做，需要将主任务中的执行车辆制成空,否则还会指派该车，因为
+      --重做希望让其他车来接着做这个任务
+      update tbDispatchTaskInfo set ExeAgvID=0,FinishTime='',TaskState=0
+      where dispatchNo='$dispatchNo$' and $State$=0;
+
+      update tbDispatchTaskDetail set State=0,FinishTime=''
+      where dispatchNo='$dispatchNo$' and $State$=0;
+
+      UPDATE tbDispatchTaskDetail set IsNeedCallBack=1
+      where $State$=0 and IsNeedCallBack>0
+      and dispatchNo='$dispatchNo$'
+      and DetailID=$TaskDetailID$;
+
+      update tbDispatchTaskInfo set TaskState=$State$,FinishTime='$FinishTime$'
+      where 0=(
+      select count(1) Amount
+      from tbDispatchTaskDetail
+      where dispatchNo='$dispatchNo$'
+      and State!=$State$
+      )
+      and dispatchNo='$dispatchNo$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateStorageState">
+    <RuleName>手动更新储位状态 </RuleName>
+    <Sql>
+      UPDATE  tbLocaton
+      SET  StorageState =$storeState$, LockState=$LockState$
+      where ID=$ID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="GetTaskDetail">
+    <RuleName>加载任务明细</RuleName>
+    <Sql>
+      select * from tbDispatchTaskDetail
+      where dispatchNo='$dispatchNo$'
+      and DetailID=$TaskDetailID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadUserInfo">
+    <RuleName>加载用户信息</RuleName>
+    <Sql>
+      select UserID,
+      PassWord,
+      UserName
+      from tbUser
+      where UserID='$UserID$' and PassWord='$PassWord$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryUserOperButttons">
+    <RuleName>加载用户操作按钮列表</RuleName>
+    <Sql>
+      select
+      a.ButtonType,
+      a.ButtonName
+      from tbUserCategoryToButton a
+      inner join tbUserToCategory b on a.CategoryCode=b.CategoryCode
+      where b.UserID='$UserID$'
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="LoadCallBoxByID">
+    <RuleName>根据ID加载呼叫盒信息</RuleName>
+    <Sql>
+      select * from  tbCallBoxInfo where CallBoxID=$CallBoxID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadCallBoxDetails">
+    <RuleName>加载呼叫盒明细</RuleName>
+    <Sql>
+      select * from  tbCallBoxDetail where CallBoxID=$CallBoxID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskMustPass">
+    <RuleName>加载任务配置明细必经地标信息</RuleName>
+    <Sql>
+      select
+      TaskConditonCode,
+      TaskConfigDetailID,
+      DetailID,
+      MustPassLandCode,
+      Remark
+      from tbTaskConfigMustPass
+      where TaskConditonCode='$TaskConditonCode$'
+      and TaskConfigDetailID=$TaskConfigDetailID$
+      order by DetailID asc
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadIOActionByID">
+    <RuleName>根据IO动作加载对应的IO动作信息</RuleName>
+    <Sql>
+      select *
+      from tbIOActionInfo
+      where ActionID=$IOActionID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="InsertTaskInfo">
+    <RuleName>保存任务主表信息</RuleName>
+    <Sql>
+      insert into tbDispatchTaskInfo
+      (
+      dispatchNo,
+      stationNo,
+      BuildTime,
+      TaskState,
+      CallLand,
+      CallID,
+      taskType
+      ) values (
+      '$dispatchNo$',
+      $stationNo$,
+      '$BuildTime$',
+      $TaskState$,
+      '$CallLand$',
+      $CallID$,
+      $taskType$
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="InsertTaskDetail">
+    <RuleName>保存任务明细信息</RuleName>
+    <Sql>
+      insert into tbDispatchTaskDetail
+      (
+      dispatchNo,
+      DetailID,
+      LandCode,
+      OperType,
+      IsAllowExcute,
+      State,
+      PutType,
+      PassType,
+      IsSensorStop
+      ) values (
+      '$dispatchNo$',
+      $DetailID$,
+      '$LandCode$',
+      $OperType$,
+      $IsAllowExcute$,
+      $State$,
+      $PutType$,
+      $PassType$,
+      $IsSensorStop$
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="ReleaseCar">
+    <RuleName>放行小车处理任务明细</RuleName>
+    <Sql>
+      UPDATE tbDispatchTaskDetail
+      set IsAllowExcute=1
+      where dispatchNo='$TaskNo$'
+      and LandCode='$LandCode$'
+      and DetailID=(
+      select coalesce(min(DetailID),0)
+      from tbDispatchTaskDetail
+      where IsAllowExcute=0
+      and dispatchNo='$TaskNo$'
+      and LandCode='$LandCode$'
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="ModifyTaskStateByNo">
+    <RuleName>更新任务超时</RuleName>
+    <Sql>
+      UPDATE  tbDispatchTaskInfo
+      SET  TaskState = $UpdateState$,FinishTime='$FinishTime$'
+      where dispatchNo='$dispathNo$';
+
+      update tbLocaton set LockState=0,Remark=''
+      where LankMarkCode in (
+      select LandCode
+      from tbDispatchTaskDetail
+      where dispatchNo='$dispathNo$'
+      );
+
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateTaskForFinish">
+    <RuleName>任务完成时更新主任务状态</RuleName>
+    <Sql>
+      UPDATE  tbDispatchTaskInfo
+      SET  TaskState =$State$,FinishTime ='$FinishTime$'
+      where  dispatchNo ='$dispatchNo$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="UpdateTaskForExcute">
+    <RuleName>任务被执行更新任务状态</RuleName>
+    <Sql>
+      UPDATE  tbDispatchTaskInfo
+      SET ExeAgvID ='$ExeAgvID$',TaskState = '$TaskState$',ExeTime='$ExeTime$'
+      where  dispatchNo ='$dispatchNo$';
+
+      UPDATE tbDispatchTaskDetail
+      set State=$TaskState$
+      where dispatchNo='$dispatchNo$'
+      and LandCode='$LandCode$'
+      and DetailID=$TaskDetialID$;
+    </Sql>
+  </rule>
+
+  <rule RuleCode="Load_RouteFragment">
+    <RuleName>查询线路线段设置</RuleName>
+    <Sql>
+      select distinct  * from tbRouteFragmentConfig
+    </Sql>
+  </rule>
+
+  <rule RuleCode="Load_Cmd">
+    <RuleName>加载所有指令档案</RuleName>
+    <Sql>
+      select distinct  * from tbCmd
+    </Sql>
+  </rule>
+
+  <rule RuleCode="Load_DisptchAssembly">
+    <RuleName>加载调度程序里配置信息</RuleName>
+    <Sql>
+      select distinct  * from tbAssemblyConfig
+    </Sql>
+  </rule>
+
+  <!--一下为MES操作-->
+  <rule RuleCode="LoadPDABill">
+    <RuleName>加载触摸屏的生产订单</RuleName>
+    <Sql>
+      select distinct a.*,d.MachineName as MachineTypeStr,b.RGBType
+      from  tbProduceBill a
+      left join tbScheduingBill b on a.ProduceBillID=b.ProduceBillID
+      left join tbProduceLineInfo c on c.ProduceID=b.ProduceID
+      left join tbMachineInfo d on a.MachineType=d.MachineID
+      where a.BillState=1 and c.PadID=$PDAID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadAllBill">
+    <RuleName>加载触摸屏的生产订单</RuleName>
+    <Sql>
+      select distinct a.MachineType,d.MachineName as MachineTypeStr
+      from tbProduceBill a
+      left join tbMachineInfo d on a.MachineType=d.MachineID
+      where a.BillState=1
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryPadOperSetByPadID">
+    <RuleName>根据平板ID加载平板操作设置信息</RuleName>
+    <Sql>
+      select distinct b.PdaID,
+      b.BtnID,
+      b.BtnDescript,
+      b.BtnSendValue,
+      a.Area as PadArea,
+      case a.Area when 8 then b.Area else a.Area end Area,
+      a.PadType,
+      a.IsViewArea,
+      b.IsChooseBill,
+      b.OperType,
+      case a.PadType when 0 then -1 else  c.StorageState end BtnState
+      from tbPdaInfo a
+      left join tbPdaOperSet b on a.PadID=b.PdaID
+      left join tbLocaton c on coalesce(b.BtnSendValue,'')=cast(c.ID as varchar(50))
+      where a.PadID=$PadID$
+      order by Area, b.BtnID asc
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="QueryProduceBillByBillID">
+    <RuleName>根据生产订单号加载生产订单信息</RuleName>
+    <Sql>
+      select a.*,d.MachineName as MachineTypeStr,b.RGBType
+      from tbProduceBill a
+      left join tbScheduingBill b on a.ProduceBillID=b.ProduceBillID
+      left join tbMachineInfo d on a.MachineType=d.MachineID
+      where a.ProduceBillID='$ProduceBillID$' and b.RGBType=$RGBType$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QuerySchudingInfo">
+    <RuleName>根据生产订单号加载排产信息</RuleName>
+    <Sql>
+      select distinct a.*
+      from tbScheduingBill a
+      left join tbProduceLineInfo b on a.ProduceID=b.ProduceID
+      where a.ProduceBillID='$BillNo$' and b.PadID=$PadID$ and a.RGBType=$RGBType$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="00333">
+    <RuleName>更新储位存放状态</RuleName>
+    <Sql>
+      UPDATE  tbLocaton
+      SET   StorageState =$storeState$,
+      MaterielType=$MaterielType$,
+      HandTime='$HandTime$'
+      where  LankMarkCode='$LandCode$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="0041">
+    <RuleName>判断当前呼叫点是否可以再次呼叫</RuleName>
+    <Sql>
+      select count(1) Amount from tbDispatchTaskInfo
+      where stationNo=$CallBoxID$
+      and CallLand='$CallLand$'
+      and TaskState in(0,1)
+    </Sql>
+  </rule>
+
+  <rule RuleCode="0047">
+    <RuleName>加载用户信息</RuleName>
+    <Sql>
+      select UserID,
+      PassWord,
+      UserName
+      from tbUser
+      where UserID='$UserID$' and PassWord='$PassWord$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="0048">
+    <RuleName>加载用户操作按钮列表</RuleName>
+    <Sql>
+      select
+      a.ButtonType,
+      a.ButtonName
+      from tbUserCategoryToButton a
+      inner join tbUserToCategory b on a.CategoryCode=b.CategoryCode
+      where b.UserID='$UserID$'
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="QueryPadInfos">
+    <RuleName>加载所有平板信息</RuleName>
+    <Sql>
+      select * from tbPdaInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryPadOperSet">
+    <RuleName>加载所有平板操作设置信息</RuleName>
+    <Sql>
+      select * from tbPdaOperSet
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllCallBox">
+    <RuleName>加载所有平板操作设置信息</RuleName>
+    <Sql>
+      select * from tbCallBoxInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllCallBoxDetails">
+    <RuleName>加载呼叫盒明细</RuleName>
+    <Sql>
+      select * from  tbCallBoxDetail
+    </Sql>
+  </rule>
+
+  <rule RuleCode="load_TaskDetail">
+    <RuleName>查询任务配置明细</RuleName>
+    <Sql>
+      select * from tbTaskConfigDetail where TaskConditonCode='$TaskConditonCode$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="ChekAllowCreatTask">
+    <RuleName>判断当前呼叫点是否可以再次呼叫</RuleName>
+    <Sql>
+      select count(1) Amount from tbDispatchTaskInfo
+      where stationNo=$CallBoxID$
+      and CallLand='$CallLand$'
+      and TaskState in(0,1)
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskDetailByConditon">
+    <RuleName>根据条件加载任务明细</RuleName>
+    <Sql>
+      select * from tbDispatchTaskDetail
+      where dispatchNo='$disPatchNo$'
+      and State in (2)
+      and DetailID=(
+      select max(DetailID) DetailID
+      from tbDispatchTaskDetail
+      where dispatchNo='$disPatchNo$'
+      and State in (2)
+      )
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadMustPassbyConditonCode">
+    <RuleName>根据任务明细查询相应必经地标的动作档案信息</RuleName>
+    <Sql>
+      select ac.*
+      from tbIOActionInfo ac
+      inner join tbTaskMustPassToIOAction mst on ac.ActionID=mst.ActionID
+      where mst.TaskConditonCode='$TaskConditonCode$'
+      and mst.TaskConfigDetailID=$TaskConfigDetailID$
+      and mst.MustPassLandCode='LandCode'
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="UpdateTask">
+    <RuleName>根据储位状态修改任务状态</RuleName>
+    <Sql>
+      merge into tbDispatchTaskInfo a
+      using
+      (
+      select dispatchNo from (
+      select ROW_NUMBER()over(partition by CallLand order by BuildTime ) rowId, dispatchNo from
+      tbDispatchTaskInfo a
+      inner join tbLocaton b on a.CallLand=b.LankMarkCode
+      where b.StorageState=2 and a.TaskState =6
+      and not exists (select 1 from tbDispatchTaskInfo where CallLand=a.CallLand and  TaskState in(0,1))
+      ) c
+      where  rowId=1
+      ) aa on a.dispatchNo=aa.dispatchNo
+      when matched then
+      update set  a.TaskState=0;
+    </Sql>
+  </rule>
+
+  <rule RuleCode="QueryAllMaterial">
+    <RuleName>查询所有物料档案</RuleName>
+    <Sql>
+      select
+      MaterialType,
+      MaterialName,
+      PickSize
+      from  tbMaterialInfo
+    </Sql>
+  </rule>
+
+  <rule RuleCode="DelUnUseTask">
+    <RuleName>删除无用的任务</RuleName>
+    <Sql>
+      <![CDATA[
+      delete  from  tbDispatchTaskDetail
+      where  dispatchNo in( select dispatchNo
+      from tbDispatchTaskInfo where SUBSTRING(BuildTime,1,8)<='$date$');
+      
+      delete from  tbDispatchTaskInfo  where SUBSTRING(BuildTime,1,8)<='$date$';
+      
+      ]]>
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskDetailByNo">
+    <RuleName>加载调度任务明细</RuleName>
+    <Sql>
+      select distinct a.*, coalesce(lg.StorageName,'') StorageName
+      from tbDispatchTaskDetail a
+      left join tbLocaton lg on a.LandCode=lg.LankMarkCode
+      where dispatchNo='$dispatchNo$' and DetailID=$DetailID$
+      order by DetailID asc
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="UpdateIsNeedCallBack">
+    <RuleName>触发回写PLC</RuleName>
+    <Sql>
+      update
+      tbDispatchTaskDetail
+      set IsNeedCallBack=2
+      where dispatchNo in (
+      select dispatchNo from tbDispatchTaskInfo where TaskState in(2,1) and ExeAgvID=$AGVID$
+      )
+      and IsNeedCallBack=1
+      and State=2
+    </Sql>
+  </rule>
+
+
+  <rule RuleCode="ClearTaskAndCar">
+    <RuleName>一键清除所有任务并将车辆复位PLC</RuleName>
+    <Sql>
+      delete from tbDispatchTaskInfo
+      delete from tbDispatchTaskDetail
+      update  tbLocaton set LockState=0,StorageState=0,Remark=''
+    </Sql>
+  </rule>
+
+  <rule RuleCode="LoadTaskByNo">
+    <RuleName>根据任务号加载任务主表信息</RuleName>
+    <Sql>
+      select
+      dispatchNo,
+      stationNo,
+      taskType,
+      ExeAgvID,
+      BuildTime,
+      TaskState,
+      FinishTime,
+      ExeTime,
+      CallLand,
+      OwerArea
+      from tbDispatchTaskInfo where dispatchNo='$dispatchNo$'
+    </Sql>
+  </rule>
+
+  <rule RuleCode="DeleteCarRemeberRoute">
+    <RuleName>删除记忆任务</RuleName>
+    <Sql>
+      delete from tbAGVCurrentRoute where AGVID=$AGVID$
+    </Sql>
+  </rule>
+
+  <rule RuleCode="MoveTaskHistory">
+    <RuleName>移动任务历史表</RuleName>
+    <Sql>
+      insert into tbDispatchTaskInfobak
+
+      insert into tbDispatchTaskInfobak
+      (
+      )select
+      
+      from tbDispatchTaskInfo a
+      where not exit (
+      select 1
+      from tbDispatchTaskInfobak
+      where dispatchNo=a.dispatchNo
+      and TaskState not in (0,1)
+      ) and a.TaskState not in (0,1)
+    </Sql>
+  </rule>
+</config>
