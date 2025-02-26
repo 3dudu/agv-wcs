@@ -1,6 +1,6 @@
-# 数据文件
-sqlserver导出
-链接: https://pan.baidu.com/s/1B6wwA8OPgr538G0PNVbWnQ 提取码: fgv8 复制这段内容后打开百度网盘手机App，操作更方便哦
+## 说明文档
+
+[说明文档](https://github.com/3dudu/agv-wcs/wiki)
 
 
 # agv-wcs
@@ -17,3 +17,4 @@ sqlserver导出
 ![](https://raw.githubusercontent.com/3dudu/agv-wcs/main/image/img12.jpeg)
 ![](https://raw.githubusercontent.com/3dudu/agv-wcs/main/image/img13.jpeg)
 ![](https://raw.githubusercontent.com/3dudu/agv-wcs/main/image/img14.jpeg)
+https://github.com/3dudu/agv-wcs/wiki
